@@ -1,8 +1,7 @@
 # Dependencias de Node.js
 node_modules/
 
-# Archivos de salida / compilados
-dist/
+
 
 # Archivos de log
 npm-debug.log*
@@ -18,8 +17,6 @@ Thumbs.db
 .env.*
 .env.local
 .vercel
-src
-
 # Archivos y carpetas ocultos de configuración de VSCode
 .vscode/
 

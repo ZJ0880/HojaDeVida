@@ -1,5 +1,4 @@
-/* Made by Yago Estévez (Twitter: @yagoestevez.com) */
-
+@import 'https://fonts.googleapis.com/css?family=Overlock:400,400i,700|Oleo+Script';
 *,
 *::before,
 *::after,
@@ -9,7 +8,7 @@
   box-sizing: border-box;
 }
 
-@import 'https://fonts.googleapis.com/css?family=Overlock:400,400i,700|Oleo+Script';
+
 
 html, body {
   height: 100%;

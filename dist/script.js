@@ -233,7 +233,7 @@ const Projects = props => {
       title: "Juego del Ahorcadito",
       img: 'https://www.shutterstock.com/image-vector/gallows-nolan-icon-simple-thin-600nw-1565010625.jpg',
       tech: "js css html",
-      link: "https://ashy-smoke-069c24910.5.azurestaticapps.net",
+      link: "https://ahorcadito-minigame.vercel.app",
       repo: "https://github.com/ZJ0880/ahorcadito-minigame" }, /*#__PURE__*/
 
     React.createElement("small", null, "Hecho en JavaScript, CSS y HTML"), /*#__PURE__*/
@@ -256,40 +256,76 @@ const Projects = props => {
   Contact Component
  ***********************/
 
-const Contact = props => {
-  return /*#__PURE__*/(
-    React.createElement("section", { id: "contact" }, /*#__PURE__*/
-    React.createElement("div", { className: "container" }, /*#__PURE__*/
-    React.createElement("div", { className: "heading-wrapper" }, /*#__PURE__*/
-    React.createElement("div", { className: "heading" }, /*#__PURE__*/
-    React.createElement("p", { className: "title" }, "Desea ", /*#__PURE__*/
-    React.createElement("br", null), "contactarme?"), /*#__PURE__*/
+const Contact = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+    };
 
+    try {
+      const res = await fetch('/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-    React.createElement("p", { className: "separator" }), /*#__PURE__*/
-    React.createElement("p", { className: "subtitle" }, "Utilice el siguiente formulario o envíe un correo electrónico a ",
-    '', /*#__PURE__*/
-    React.createElement("span", { className: "mail" }, "miguelzj0909", /*#__PURE__*/
+      if (res.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Enviado!',
+          text: 'Tu mensaje se ha enviado correctamente.',
+          timer: 3000,
+          showConfirmButton: false,
+        });
+        form.reset();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No pudimos enviar tu mensaje. Inténtalo de nuevo.',
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema con la red o el servidor.',
+      });
+    }
+  };
 
-    React.createElement("i", { className: "fas fa-at at" }), "gmail", /*#__PURE__*/
-
-    React.createElement("i", { className: "fas fa-circle dot" }), "com"), ":")), /*#__PURE__*/
-
-
-
-
-
-    React.createElement(SocialLinks, null)), /*#__PURE__*/
-
-    React.createElement("form", { id: "contact-form", action: "#" }, /*#__PURE__*/
-    React.createElement("input", { placeholder: "Nombre", name: "name", type: "text", required: true }), /*#__PURE__*/
-    React.createElement("input", { placeholder: "Correo", name: "email", type: "email", required: true }), /*#__PURE__*/
-    React.createElement("textarea", { placeholder: "Mensaje", type: "text", name: "message" }), /*#__PURE__*/
-    React.createElement("input", { className: "button", id: "submit", value: "Enviar", type: "submit" })))));
-
-
-
-
+  return React.createElement('section', { id: 'contact' },
+    React.createElement('div', { className: 'container' },
+      React.createElement('div', { className: 'heading-wrapper' },
+        React.createElement('div', { className: 'heading' },
+          React.createElement('p', { className: 'title' }, 'Desea ', React.createElement('br'), 'contactarme?'),
+          React.createElement('p', { className: 'separator' }),
+          React.createElement('p', { className: 'subtitle' },
+            'Utilice el siguiente formulario o envíe un correo electrónico a ',
+            React.createElement('span', { className: 'mail' },
+              'miguelzj0909',
+              React.createElement('i', { className: 'fas fa-at at' }),
+              'gmail',
+              React.createElement('i', { className: 'fas fa-circle dot' }),
+              'com'
+            ),
+            ':'
+          )
+        ),
+        React.createElement(SocialLinks, null)
+      ),
+      React.createElement('form', { id: 'contact-form', onSubmit: handleSubmit },
+        React.createElement('input', { placeholder: 'Nombre', name: 'name', type: 'text', required: true }),
+        React.createElement('input', { placeholder: 'Correo', name: 'email', type: 'email', required: true }),
+        React.createElement('textarea', { placeholder: 'Mensaje', name: 'message' }),
+        React.createElement('input', { className: 'button', id: 'submit', value: 'Enviar', type: 'submit' })
+      )
+    )
+  );
 };
 
 

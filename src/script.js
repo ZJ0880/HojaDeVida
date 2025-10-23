@@ -1,6 +1,3 @@
-// Made by Yago Estévez (Twitter: @yagoestevez.com)
-
-
 /***********************
   Menu Component
  ***********************/

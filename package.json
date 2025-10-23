@@ -1,28 +1,10 @@
 {
   "name": "portfolio-miguel-zapata",
   "version": "1.0.0",
-  "description": "Portafolio personal de Miguel Zapata - Desarrollador de Software",
-  "main": "index.js",
   "scripts": {
-    "dev": "vercel dev",
-    "build": "echo 'No build needed'",
-    "start": "node server.js"
+    "dev": "tu-comando-dev"
   },
-  "keywords": [
-    "portfolio",
-    "developer",
-    "react",
-    "vercel"
-  ],
-  "author": "Miguel Zapata",
-  "license": "MIT",
   "dependencies": {
-    "nodemailer": "^6.9.7"
-  },
-  "devDependencies": {
-    "vercel": "^33.0.0"
-  },
-  "engines": {
-    "node": ">=18.x"
+    "nodemailer": "^6.9.0"
   }
 }

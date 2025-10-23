@@ -16,6 +16,8 @@ Thumbs.db
 # Archivos de entorno
 .env
 .env.*
+.env.local
+.vercel
 
 # Archivos y carpetas ocultos de configuración de VSCode
 .vscode/

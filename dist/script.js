@@ -473,13 +473,16 @@ class App extends React.Component {
     );
   }
 
-  componentDidMount() {
-    const navbar = document.querySelector('#navbar');
-    const header = document.querySelector('#welcome-section');
-    const forest = document.querySelector('.forest');
-    const silhouette = document.querySelector('.silhouette');
-    let forestInitPos = -300;
+componentDidMount() {
+  const navbar = document.querySelector('#navbar');
+  const header = document.querySelector('#welcome-section');
+  const forest = document.querySelector('.forest');
+  const silhouette = document.querySelector('.silhouette');
+  const moon = document.querySelector('.moon');
+  let forestInitPos = -300;
 
+  // Esperar a que la animación inicial termine antes de aplicar el control de scroll
+  setTimeout(() => {
     window.onscroll = () => {
       let scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
 
@@ -493,14 +496,20 @@ class App extends React.Component {
         }
       }
 
-      // Ocultar/mostrar header
+      // Ocultar/mostrar header, silueta, bosque Y LUNA
       if (scrollPos - 100 <= window.innerHeight) {
         if (header) {
           header.style.visibility = 'visible';
         }
+        if (moon) {
+          moon.classList.remove('hide-moon');
+        }
       } else {
         if (header) {
           header.style.visibility = 'hidden';
+        }
+        if (moon) {
+          moon.classList.add('hide-moon');
         }
       }
 
@@ -511,27 +520,31 @@ class App extends React.Component {
         navbar.classList.remove('bg-active');
       }
     };
+  }, 2500); // Esperar a que termine la animación de la luna (1s delay + 1.2s animación = 2.2s + margen)
 
-    // Smooth scrolling
-    (function navSmoothScrolling() {
-      const internalLinks = document.querySelectorAll('a[href^="#"]');
-      for (let i in internalLinks) {
-        if (internalLinks.hasOwnProperty(i)) {
-          internalLinks[i].addEventListener('click', e => {
-            e.preventDefault();
-            const targetId = internalLinks[i].hash;
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              targetElement.scrollIntoView({
-                block: 'start',
-                behavior: 'smooth'
-              });
-            }
-          });
-        }
+  // Smooth scrolling
+  (function navSmoothScrolling() {
+    const internalLinks = document.querySelectorAll('a[href^="#"]');
+    for (let i in internalLinks) {
+      if (internalLinks.hasOwnProperty(i)) {
+        internalLinks[i].addEventListener('click', e => {
+          e.preventDefault();
+          const targetId = internalLinks[i].hash;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              block: 'start',
+              behavior: 'smooth'
+            });
+          }
+        });
       }
-    })();
-  }
+    }
+  })();
+}
+
+
+
 }
 
 ReactDOM.render(
